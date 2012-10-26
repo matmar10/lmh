@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<client>
+    <commands>
+
+        <!-- public commands -->
+        <command name="ticker" method="GET" uri="/api/ticker" class="\BitcoinExchangeRestApi\Command\DynamicCommand">
+            <doc>https://www.bitstamp.net/api/</doc>
+        </command>
+
+        <!-- private commands -->
+        <command name="balance" method="POST" uri="/api/balance/" class="\Bitstamp\Command\PrivateCommand">
+        <!-- command name="balance" method="POST" uri="/api/balance/" -->
+            <doc>https://www.bitstamp.net/api/</doc>
+        </command>
+
+    </commands>
+</client>

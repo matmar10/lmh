@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<client>
+    <commands>
+
+        <command name="config" method="GET" uri="/api/config" class="\BitcoinbymobileApi\Command\DynamicCommand">
+            <doc>TODO: add doc for this command</doc>
+        </command>
+
+        <command name="purchase" method="GET" uri="/api/purchase/{uuid}" class="\BitcoinbymobileApi\Command\DynamicCommand">
+            <doc>TODO: add doc for this command</doc>
+            <param name="uuid" type="string" required="true" min_length="36" max_length="36" doc="The UUID for the purchase to retrieve." />
+        </command>
+
+        <command name="country_prices" method="GET" uri="/api/price/{country}" class="\BitcoinbymobileApi\Command\DynamicCommand">
+            <doc>TODO: add doc for this command</doc>
+            <param name="country" type="string" required="true" min_length="2" max_length="2" doc="The country to retrieve pricing information for." />
+        </command>
+
+        <command name="price" method="GET" uri="/api/price/{country}/{price}" class="\BitcoinbymobileApi\Command\DynamicCommand">
+            <doc>TODO: add doc for this command</doc>
+            <param name="country" type="string" required="true" min_length="2" max_length="2" doc="The country associated with the requested price." />
+            <param name="price" type="float" required="true" doc="The display amount for the requested price." />
+        </command>
+
+        <command name="country_payouts" method="GET" uri="/api/fortumo/payout/{country}" class="\BitcoinbymobileApi\Command\DynamicCommand">
+            <doc>TODO: add doc for this command</doc>
+            <param name="country" type="string" required="true" min_length="2" max_length="2" doc="The country to retrieve payouts for." />
+        </command>
+
+        <command name="payout" method="GET" uri="/api/fortumo/payout/{country}/{price}" class="\BitcoinbymobileApi\Command\DynamicCommand">
+            <doc>TODO: add doc for this command</doc>
+            <param name="country" type="string" required="true" min_length="2" max_length="2" doc="The country associated with the requested price." />
+            <param name="price" type="float" required="true" doc="The display amount for the requested price." />
+        </command>
+
+    </commands>
+</client>

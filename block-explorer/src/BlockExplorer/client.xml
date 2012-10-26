@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<client>
+    <commands>
+
+        <!-- public commands -->
+
+        <command name="check_address" method="GET" uri="checkaddress/{address}">
+            <doc>https://blockexplorer.com/q/checkaddress</doc>
+            <param name="address" type="string" required="true" doc="Check if the specified address is valid." />
+        </command>
+
+    </commands>
+</client>
