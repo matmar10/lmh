@@ -18,12 +18,13 @@ class MsisdnValidator extends ConstraintValidator {
 
     public function isValid($msisdn, Constraint $constraint)
     {
+        $msisdnFormat = $msisdn->getMsisdnFormat();
 
-        $country = $msisdn->getCountry();
+        $country = $msisdnFormat->getCountry();
 
         $msisdnValue = $msisdn->getMsisdn();
 
-        $countryRegexPossibilities = self::$configurationService->getCountryRegexList($country);
+        $countryRegexPossibilities = $msisdnFormat->getFormats();
 
         foreach($countryRegexPossibilities as $regex) {
             if(false != preg_match($regex, $msisdnValue)) {

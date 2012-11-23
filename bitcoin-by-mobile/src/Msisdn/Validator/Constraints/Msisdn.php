@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraint;
  */
 class Msisdn extends Constraint {
 
-    public $message = 'The msisdn "%msisdn%" is invalid for the country "%country%".';
+    public $message = "The msisdn '%msisdn%' is invalid for the country '%country%'.";
     
     public function validatedBy()
     {

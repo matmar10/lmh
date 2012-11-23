@@ -2,13 +2,8 @@
 
 namespace Msisdn\Exception;
 
-use RestApi\Exception\StatusCodeInterface;
+use RestApi\Exception\ValidatorErrorsRestApiException;
 
-class InvalidFormatException extends \Exception implements StatusCodeInterface {
-
-    public function getHttpStatusCode()
-    {
-        return 400;
-    }
+class InvalidFormatException extends ValidatorErrorsRestApiException {
 
 }

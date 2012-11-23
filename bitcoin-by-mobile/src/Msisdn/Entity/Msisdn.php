@@ -11,6 +11,7 @@ use JMS\SerializerBundle\Annotation\ReadOnly;
 use JMS\SerializerBundle\Annotation\Exclude;
 use Lmh\UtilBundle\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
+use Msisdn\Entity\MsisdnFormat;
 
 /**
  * @ExclusionPolicy("none")
@@ -18,46 +19,16 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Msisdn {
 
-
-    /**
-     * @Type("string")
-     * @Assert\Country()
-     */
-    protected $country;
-
-    /**
-     * @Type("string")
-     * @Assert\NotBlank()
-     * @Assert\MinLength(2)
-     * @Assert\MaxLength(2)
-     */
-    protected $countryPrefix;
-    
     /**
      * @Type("string")
      * @Assert\NotBlank()
      */
     protected $msisdn;
 
-    public function setCountry($country)
-    {
-        $this->country = $country;
-    }
-
-    public function getCountry()
-    {
-        return $this->country;
-    }
-
-    public function setCountryPrefix($countryPrefix)
-    {
-        $this->countryPrefix = $countryPrefix;
-    }
-
-    public function getCountryPrefix()
-    {
-        return $this->countryPrefix;
-    }
+    /**
+     * @Type("\Msisdn\Entity\MsisdnFormat")
+     */
+    protected $msisdnFormat;
 
     public function setMsisdn($msisdn)
     {
@@ -72,5 +43,20 @@ class Msisdn {
     public function __toString()
     {
         return $this->msisdn;
+    }
+
+    public function asMobile()
+    {
+        return substr($this->msisdn, strlen($this->msisdnFormat->getInternationalPrefix()));
+    }
+
+    public function setMsisdnFormat(MsisdnFormat $msisdnFormat)
+    {
+        $this->msisdnFormat = $msisdnFormat;
+    }
+
+    public function getMsisdnFormat()
+    {
+        return $this->msisdnFormat;
     }
 }

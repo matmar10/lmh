@@ -35,7 +35,7 @@ class RestApiController extends Controller {
 
     public function buildExceptionResponse(\Exception $exception, $statusCode = 500)
     {
-
+        
         $response = new ResponseEntity();
         $response->setSuccess(false);
 

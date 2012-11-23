@@ -4,7 +4,14 @@ namespace RestApi\Exception;
 
 use RestApi\Exception\ClientErrorRestApiException;
 use Symfony\Component\Validator\ConstraintViolationList;
+use JMS\SerializerBundle\Annotation\ExclusionPolicy;
+use JMS\SerializerBundle\Annotation\Type;
+use JMS\SerializerBundle\Annotation\ReadOnly;
+use JMS\SerializerBundle\Annotation\SerializedName;
 
+/**
+ * @ExclusionPolicy("none")
+ */
 class ValidatorErrorsRestApiException extends ClientErrorRestApiException  implements SerializableExceptionInterface {
 
     protected $validatorErrors;
