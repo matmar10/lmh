@@ -29,6 +29,8 @@ class MsisdnFactory {
         if($isMsisdn || $mobileNumber instanceof Msisdn) {
             $msisdn->setMsisdn($mobileNumber);
         } else {
+
+            $mobileNumber = preg_replace("/[^0-9]/", "", $mobileNumber);            
             // strip the national dialing prefix, if it exists (since it's not part of a msisdn)
             $nationalDialingPrefix = $msisdnFormat->getNationalDialingPrefix();
             $stripped = $mobileNumber;
@@ -44,22 +46,10 @@ class MsisdnFactory {
         $msisdnConstraint = new MsisdnConstraint();
         $constraintViolationList = self::$validator->validateValue($msisdn, $msisdnConstraint);
         if(count($constraintViolationList)) {
-
-
-            echo "MOBILE: ";
-            print_r($mobileNumber);
-            echo "\n";
-            echo "MSISDN: ";
-            print_r($msisdnValue);
-            echo "\n";
-            die();
-
-
             $messageFormat = "Cannot build a '%s' msisdn from mobile number '%s': the format is invalid (example mobile format: '%s').";
             $message = sprintf($messageFormat, $country, $mobileNumber, $msisdnFormat->getExampleMobile());
             throw new InvalidFormatException($constraintViolationList, $message);
         }
-
 
         return $msisdn;
     }

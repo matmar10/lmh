@@ -646,7 +646,7 @@
 		<country code="ZA">
 			<format expression="27[78][0-9]{4,11}"/>
 		</country>	
-		<country code="ES">
+		<country code="ES" prefix="34" exampleMobile="655 555 555">
 			<format expression="346[0-9]{8}"/>
 		</country>	
 		<country code="LK">
