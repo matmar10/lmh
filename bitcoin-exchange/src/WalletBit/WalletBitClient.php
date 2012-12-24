@@ -14,7 +14,7 @@ class WalletBitClient extends Client
     public static function factory($config = array())
     {
         $default = array(
-            'base_url' => '{scheme}://walletbit.com/api',
+            'base_url' => '{scheme}://walletbit.com',
             'scheme' => 'https',
         );
         $required = array(
