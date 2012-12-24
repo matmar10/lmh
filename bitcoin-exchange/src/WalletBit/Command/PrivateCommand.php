@@ -1,6 +1,6 @@
 <?php
 
-namespace Bitcoin\WalletBit\Command;
+namespace WalletBit\Command;
 
 use BitcoinExchangeRestApi\Command\DynamicCommand;
 

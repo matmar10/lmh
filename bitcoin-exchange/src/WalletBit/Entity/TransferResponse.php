@@ -1,6 +1,6 @@
 <?php
 
-namespace Bitcoin\WalletBit\Entity;
+namespace WalletBit\Entity;
 
 use RestApi\Entity\UuidUriEntityBase;
 use Doctrine\ORM\Mapping as ORM;

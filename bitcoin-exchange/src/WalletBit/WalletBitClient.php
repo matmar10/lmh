@@ -1,6 +1,6 @@
 <?php
 
-namespace Bitcoin\WalletBit;
+namespace WalletBit;
 
 use Guzzle\Service\Client;
 use Guzzle\Service\Inspector;
