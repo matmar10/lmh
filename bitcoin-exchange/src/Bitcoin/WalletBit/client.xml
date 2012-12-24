@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<client>
+    <commands>
+
+        <!-- private commands -->
+
+        <command name="send" method="POST" uri="" class="\Bitcoin\WalletBit\Command\PrivateCommand">
+            <doc>https://walletbit.com/docs/api/send</doc>
+            <param name="customer_email" location="post_field" type="string" required="true" min_length="5" max_length="30" doc="the receiver's email address" />
+            <param name="address" location="post_field" type="string" required="false" min_length="27" max_length="34" doc="the Bitcoin receiving address to send to" />
+            <param name="amount" location="post_field" type="float" required="true" doc="the amount in Bitcoin" />
+            <param name="details" location="post_field" type="string" required="true" min_length="0" max_length="100" doc="message to the recipient" />
+        </command>
+
+        <command name="send_to" method="POST" uri="/sendto" class="\Bitcoin\WalletBit\Command\PrivateCommand">
+            <doc>https://walletbit.com/docs/api/lookup/deposit</doc>
+            <param name="to" location="post_field" type="string" required="true" min_length="1" max_length="30" doc="email or msisdn (internationalized mobile number) to send Bitcoin to" />
+            <param name="from" location="post_field" type="string" required="true" min_length="1" max_length="30" doc="senders name, email, or msisdn (internationalized mobile number)" />
+            <param name="details" location="post_field" type="string" required="false" min_length="0" max_length="22" doc="the message to the recipient" />
+        </command>        
+
+        <command name="get_new_address" method="POST" uri="/getnewaddress" class="\Bitcoin\WalletBit\Command\PrivateCommand">
+            <doc>https://walletbit.com/docs/api/getnewaddress</doc>
+            <param name="label" location="post_field" type="string" required="true" min_length="1" max_length="100" doc="label for the new bitcoin address" />
+        </command>
+
+        <command name="lookup_deposit_address" method="POST" uri="/lookup/deposit" class="\Bitcoin\WalletBit\Command\PrivateCommand">
+            <doc>https://walletbit.com/docs/api/sendto</doc>
+            <param name="address" location="post_field" type="string" required="true" min_length="27" max_length="34" doc="the Bitcoin receiving address to lookup" />
+        </command>
+
+    </commands>
+</client>
