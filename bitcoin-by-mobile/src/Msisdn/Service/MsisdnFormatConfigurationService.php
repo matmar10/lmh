@@ -25,9 +25,14 @@ class MsisdnFormatConfigurationService {
         self::$xml->open(self::$msisdnFormatConfigFilename);
     }
 
+    public function getCountries($countries)
+    {
+        $this->setCountryData($countries);
+        return array_intersect_key(self::$countryFormats, array_flip($countries));
+    }
+
     public function get($country, $property = false)
     {
-
         if(!array_key_exists($country, self::$countryFormats)) {
             $this->setCountryData($country);
         }
@@ -41,71 +46,91 @@ class MsisdnFormatConfigurationService {
         
         return $msisdnFormat;
     }
-    
-    public function setCountryData($country)
-    {
-        $formats = array();
-        $prefix = null;
-        $nationalDialingPrefix = null;
-        $exampleMobile = null;
 
+    public function setCountryData($targetCountryOrCountries = null)
+    {
         $xml = self::$xml;
 
         while($xml->read()) {
 
-            if('country' === $xml->name) {
+            $country = null;
 
-                // check this is the target country
-                $xml->moveToAttribute('code');
-                if($xml->value === $country) {
+            if('country' !== $xml->name) {
+                continue;
+            }
 
-                    // save the prefix
-                    if($xml->moveToAttribute('prefix')) {
-                        $prefix = $xml->value;
+            $xml->moveToAttribute('code');
+            $country = $xml->value;
+
+            // check this is the target country, if requested
+            if(!is_null($targetCountryOrCountries)) {
+                if(is_array($targetCountryOrCountries)) {
+                    if(false == array_search($country, $targetCountryOrCountries)) {
+                        continue;
                     }
+                } elseif($country !== $targetCountryOrCountries) {
+                    continue;
+                }
+            }
 
-                    // save the national dialing prefix
-                    if($xml->moveToAttribute('nationalDialingPrefix')) {
-                        $nationalDialingPrefix = $xml->value;
-                    }
+            self::$countryFormats[$country] = $this->buildMsisdnFormat($xml, $country);
 
-                    // save the example mobile number
-                    if($xml->moveToAttribute('exampleMobile')) {
-                        $exampleMobile = $xml->value;
-                    }
+            // stop if only seaching for one and only one
+            if(!is_null($targetCountryOrCountries) && !is_array($targetCountryOrCountries)) {
+                break;
+            }
+        }
+    }
 
-                    // read everything, stopping at the format entities
-                    while($xml->read()) {
+    protected function buildMsisdnFormat(XmlReader $xml, $country)
+    {
 
-                        // we found a format entity
-                        if(XMLReader::ELEMENT === $xml->nodeType &&
-                            'format' === $xml->name) {
+            $formats = array();
+            $prefix = null;
+            $nationalDialingPrefix = null;
+            $exampleMobile = null;
 
-                            // grab the regular expression
-                            $xml->moveToAttribute('expression');
-                            $formats[] = '/^' . $xml->value . '$/';
-                        }
+            // save the prefix
+            if($xml->moveToAttribute('prefix')) {
+                $prefix = $xml->value;
+            }
 
-                        // stop if we've advanced beyond the target country
-                        if('country' === $xml->name) {
-                            break;
-                        }
-                    }
+            // save the national dialing prefix
+            if($xml->moveToAttribute('nationalDialingPrefix')) {
+                $nationalDialingPrefix = $xml->value;
+            }
+
+            // save the example mobile number
+            if($xml->moveToAttribute('exampleMobile')) {
+                $exampleMobile = $xml->value;
+            }
+
+            // read everything, stopping at the format entities
+            while($xml->read()) {
+
+                // we found a format entity
+                if(XMLReader::ELEMENT === $xml->nodeType && 'format' === $xml->name) {
+                    // grab the regular expression
+                    $xml->moveToAttribute('expression');
+                    $formats[] = '/^' . $xml->value . '$/';
+                    continue;
+                }
+
+                // break to outer loop if we've advanced beyond the current country
+                if('country' === $xml->name) {
                     break;
                 }
             }
-        }
 
-        $msisdnFormat = new MsisdnFormat();
-        $msisdnFormat->setCountry($country);
-        $msisdnFormat->setInternationalPrefix($prefix);
-        $msisdnFormat->setFormats($formats);
-        $msisdnFormat->setNationalDialingPrefix($nationalDialingPrefix);
-        $msisdnFormat->setExampleMobile($exampleMobile);
-        
-        self::$countryFormats[$country] = $msisdnFormat;
+            $msisdnFormat = new MsisdnFormat();
+            $msisdnFormat->setCountry($country);
+            $msisdnFormat->setInternationalPrefix($prefix);
+            $msisdnFormat->setNationalDialingPrefix($nationalDialingPrefix);
+            $msisdnFormat->setExampleMobile($exampleMobile);
+            $msisdnFormat->setFormats($formats);
+            return $msisdnFormat;
     }
-
+    
     public function __destruct() {
         self::$xml->close();
     }
