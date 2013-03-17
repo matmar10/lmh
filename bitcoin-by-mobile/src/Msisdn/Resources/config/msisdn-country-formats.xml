@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <numbering-plan>
 	<countries>
+
+    <!--
+        Countries must be updated to contain:  
+
+        <country code="XX" prefix="00" nationalDialingPrefix="0" exampleMobile="000 000 0000">
+			<format expression="00[045789][0-9]{8}"/>
+        </country>
+    
+    -->
 		<country code="AF">
 			<format expression="937[05789][0-9]{6,7}"/>
 		</country>	
@@ -43,7 +52,7 @@
 			<format expression="614(2([1-4]|[7-9])|3([0-4]|[7-9])|4[89])[0-9]{6}"/>
 			<format expression="61425([1-3]|[6-8])[0-9]{5}"/>
 		</country>	
-		<country code="AT">
+		<country code="AT" prefix="43" nationalDialingPrefix="0" exampleMobile="000 000 0000">
 			<format expression="436[7-9][0-9]{5,11}"/>
 			<format expression="436(44|5([0-3]|[579])|6[01]|6[3-9])[0-9]{4,10}"/>
 		</country>	
@@ -255,7 +264,7 @@
 		<country code="GE">
 			<format expression="995(5[578]|77|93)[0-9]{6}"/>
 		</country>	
-		<country code="DE">
+		<country code="DE" prefix="49" nationalDialingPrefix="0" exampleMobile="5 55 5 55 55">
 			<format expression="4915(05|1[125]|2[025]|7[0578])[0-9]{7}"/>
 			<format expression="491(6[023489]|7[0-9])[0-9]{7,8}"/>
 		</country>
@@ -414,7 +423,7 @@
 		<country code="LT">
 			<format expression="3706[0-9]{7}"/>
 		</country>	
-		<country code="LU">
+		<country code="LU" prefix="352" nationalDialingPrefix="" exampleMobile="651 555 555">
 			<format expression="3526[0-9]{8}"/>
 		</country>	
 		<country code="MO">
@@ -497,7 +506,7 @@
 		<country code="NR">
 			<format expression="674555[0-9]{4}"/>
 		</country>	
-		<country code="NL">
+		<country code="NL" prefix="31" nationalDialingPrefix="0" exampleMobile="06-5555555">
 			<format expression="316[0-9]{8}"/>
 		</country>	
 		<country code="AN">
@@ -567,7 +576,7 @@
 			<format expression="48(5[01]|6[069]|7[89]|88)[0-9]{7}"/>
 			<format expression="4872[12][0-9]{6}"/>
 		</country>	
-		<country code="PT">
+		<country code="PT" prefix="351" nationalDialingPrefix="" exampleMobile="95 555 5555">
 			<format expression="3519[0-9]{8}"/>
 		</country>	
 		<country code="PR">
