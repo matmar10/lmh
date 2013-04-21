@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<client>
+    <commands>
+
+        <!-- public commands -->
+        <command name="fee" method="GET" uri="api/2/{pair}/fee">
+            <doc>https://btc-e.com/api/documentation</doc>
+            <param name="pair" type="enum:btc_usd,btc_rur,btc_eur,ltc_btc,ltc_usd,ltc_rur,nmc_btc,usd_rur,eur_usd,nvc_btc" required="true" doc="pair, e.g. btc_usd" />
+        </command>
+
+        <command name="ticker" method="GET" uri="api/2/{pair}/ticker">
+            <doc>https://btc-e.com/api/documentation</doc>
+            <param name="pair" type="enum:btc_usd,btc_rur,btc_eur,ltc_btc,ltc_usd,ltc_rur,nmc_btc,usd_rur,eur_usd,nvc_btc" required="true" doc="pair, e.g. btc_usd" />
+        </command>
+
+        <command name="trades" method="GET" uri="api/2/{pair}/trades">
+            <doc>https://btc-e.com/api/documentation</doc>
+            <param name="pair" type="enum:btc_usd,btc_rur,btc_eur,ltc_btc,ltc_usd,ltc_rur,nmc_btc,usd_rur,eur_usd,nvc_btc" required="true" doc="pair, e.g. btc_usd" />
+        </command>
+
+        <command name="depth" method="GET" uri="api/2/{pair}/depth">
+            <doc>https://btc-e.com/api/documentation</doc>
+            <param name="pair" type="enum:btc_usd,btc_rur,btc_eur,ltc_btc,ltc_usd,ltc_rur,nmc_btc,usd_rur,eur_usd,nvc_btc" required="true" doc="pair, e.g. btc_usd" />
+        </command>
+
+        <!-- private commands -->
+        <command name="getInfo" method="POST" uri="tapi/" class="\Lmh\Bundle\SpreadTradeBundle\Btce\Command\PrivateCommand">
+            <doc>https://btc-e.com/api/documentation</doc>
+        </command>
+
+        <!-- TODO:
+        <command name="TransHistory" method="POST" uri="tapi/" class="\Lmh\Bundle\SpreadTradeBundle\Btce\Command\PrivateCommand">
+        </command> -->
+
+
+        <command name="TradeHistory" method="POST" uri="tapi/" class="\Lmh\Bundle\SpreadTradeBundle\Btce\Command\PrivateCommand">
+            <doc>https://btc-e.com/api/documentation</doc>
+            <param name="from" location="post_field" type="integer" required="false" doc="the number of the transaction to start displaying with" />
+            <param name="count" location="post_field" type="integer" required="false" doc="the number of transactions for displaying" />
+            <param name="from_id" location="post_field" type="integer" required="false" doc="the ID of the transaction to start displaying with	numerical" />
+            <param name="end_id" location="post_field" type="integer" required="false" doc="the ID of the transaction to finish displaying with	numerical" />
+            <param name="order" location="post_field" type="enum:ASC,DESC" required="false" doc="sorting ASC or DESC (default: DESC)" />
+            <param name="since" location="post_field" type="integer" required="false" doc="when to start the displaying	UNIX time" />
+            <param name="end" location="post_field" type="integer" required="false" doc="when to stop the displaying UNIX time" />
+            <param name="pair" type="enum:btc_usd,btc_rur,btc_eur,ltc_btc,ltc_usd,ltc_rur,nmc_btc,usd_rur,eur_usd,nvc_btc" required="true" doc="pair, e.g. btc_usd" />
+        </command>
+
+        <command name="OrderList" method="POST" uri="tapi/" class="\Lmh\Bundle\SpreadTradeBundle\Btce\Command\PrivateCommand">
+            <doc>https://btc-e.com/api/documentation</doc>
+            <param name="from" location="post_field" type="integer" required="false" doc="the number of the transaction to start displaying with" />
+            <param name="count" location="post_field" type="integer" required="false" doc="the number of transactions for displaying" />
+            <param name="from_id" location="post_field" type="integer" required="false" doc="the ID of the transaction to start displaying with	numerical" />
+            <param name="end_id" location="post_field" type="integer" required="false" doc="the ID of the transaction to finish displaying with	numerical" />
+            <param name="order" location="post_field" type="enum:ASC,DESC" required="false" doc="sorting ASC or DESC (default: DESC)" />
+            <param name="since" location="post_field" type="integer" required="false" doc="when to start the displaying	UNIX time" />
+            <param name="end" location="post_field" type="integer" required="false" doc="when to stop the displaying UNIX time" />
+            <param name="pair" type="enum:btc_usd,btc_rur,btc_eur,ltc_btc,ltc_usd,ltc_rur,nmc_btc,usd_rur,eur_usd,nvc_btc" required="true" doc="pair, e.g. btc_usd" />
+        </command>
+
+        <command name="Trade" method="POST" uri="tapi/" class="\Lmh\Bundle\SpreadTradeBundle\Btce\Command\PrivateCommand">
+            <doc>https://btc-e.com/api/documentation</doc>
+            <param name="pair" location="post_field" type="enum:btc_usd,btc_rur,btc_eur,ltc_btc,ltc_usd,ltc_rur,nmc_btc,usd_rur,eur_usd,nvc_btc" required="true" doc="pair, e.g. btc_usd" />
+            <param name="type" location="post_field" type="enum:buy,sell" required="true" doc="The transaction type" />
+            <param name="rate" location="post_field" type="float" required="true" doc="The rateMultiplier to buy/sell" />
+            <!-- <param name="rateMultiplier" location="post_field" type="float" required="true" doc="The rateMultiplier to buy/sell" /> -->
+            <param name="amount" location="post_field" type="float" required="true" doc="The tradeAmount to buy/sell" />
+            <!-- <param name="tradeAmount" location="post_field" type="float" required="true" doc="The tradeAmount to buy/sell" /> -->
+        </command>
+
+        <!-- TODO:
+        <command name="CancelOrder" method="POST" uri="tapi/" class="\Lmh\Bundle\SpreadTradeBundle\Btce\Command\PrivateCommand">
+        </command> -->
+
+    </commands>s
+</client>
