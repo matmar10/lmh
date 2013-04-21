@@ -2,6 +2,10 @@
 <client>
     <commands>
 
+        <command name="ticker" method="GET" uri="/ticker" class="\BitcoinExchangeRestApi\Command\DynamicCommand">
+            <doc>http://blockchain.info/api/exchange_rates_api</doc>
+        </command>
+
         <command name="balance" method="GET" uri="balance" class="\Blockchain\Command\BlockchainCommand">
             <doc>https://blockchain.info/api/api_send</doc>
         </command>
