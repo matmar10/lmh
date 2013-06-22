@@ -13,7 +13,7 @@
 		<country code="AF">
 			<format expression="937[05789][0-9]{6,7}"/>
 		</country>	
-		<country code="AL">
+		<country code="AL" prefix="355" nationalDialingPrefix="0" exampleMobile="04 2000 000">
 			<format expression="3556[7-9][0-9]{7}"/>
 		</country>	
 		<country code="DZ">
@@ -78,7 +78,7 @@
 			<format expression="375(29|44|33)[0-9]{7}"/>
 			<format expression="375259[0-9]{6}"/>
 		</country>	
-		<country code="BE">
+		<country code="BE" prefix="32" nationalDialingPrefix="0" exampleMobile="0400 000 000">
 			<format expression="324[0-9]{7,9}"/>
 		</country>	
 		<country code="BZ">
@@ -98,7 +98,7 @@
 			<format expression="5917(0[6-8]|1([01]|[4-9])|2([0-2]|[89])|7[0-5])[0-9]{5}"/>
 			<format expression="5917(11[2-4]|24[015])[0-9]{4}"/>
 		</country>	
-		<country code="BA">
+		<country code="BA" prefix="387" nationalDialingPrefix="0" exampleMobile="33 xxx xxx">
 			<format expression="3876[12356][0-9]{6,7}"/>
 		</country>	
 		<country code="BW">
@@ -113,7 +113,7 @@
 		<country code="BN">
 			<format expression="673[78][0-9]{6}"/>
 		</country>	
-		<country code="BG">
+		<country code="BG" prefix="359" nationalDialingPrefix="0" exampleMobile="049 234567">
 			<format expression="359(4[38]|8[789]|98)[0-9]{5,7}"/>
 		</country>	
 		<country code="BF">
@@ -357,7 +357,7 @@
 		<country code="IM">
 			<format expression="447924[0-4][0-9]{5}"/>
 		</country>
-		<country code="IT" prefix="39" nationalDialingPrefix="" exampleMobile="355 5555555">
+		<country code="IT" prefix="39" nationalDialingPrefix="0" exampleMobile="3555-55555">
 			<format expression="393[0-9]{8,9}"/>
 		</country>	
 		<country code="JM">
@@ -671,10 +671,10 @@
 		<country code="SZ">
 			<format expression="2686[0-7][0-9]{4}"/>
 		</country>	
-		<country code="SE">
+		<country code="SE" prefix="46" nationalDialingPrefix="0" exampleMobile="00 - 000 000 00">
 			<format expression="467[036][0-9]{5,7}"/>
 		</country>	
-		<country code="CH">
+		<country code="CH" prefix="41" nationalDialingPrefix="0" exampleMobile="66 555 44 33">
 			<format expression="417[46-9][0-9]{7}"/>
 		</country>	
 		<country code="SY">
